@@ -33,7 +33,7 @@ fn main() {
                         {
                             "event": event_name,
                             "properties": {
-                                "token": "5aa82249a4bf5e4a800ab88b6b725f92",
+                                "token": "5a4595929c1bd6d2eeb1b9417071a1c9",
                                 "distinct_id": payload["uid"],
                                 "ip": src.ip().to_string(),
                                 // Current time in milliseconds
