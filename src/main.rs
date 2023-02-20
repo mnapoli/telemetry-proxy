@@ -35,6 +35,7 @@ fn main() {
                                 // "$insert_id": "id",
                                 "bref_version": payload["v"],
                                 "command": payload["c"],
+                                // Timestamp of the first local installation
                                 "sls_installation_date": payload["install"],
                             },
                         }
