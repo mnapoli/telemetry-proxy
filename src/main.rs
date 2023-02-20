@@ -23,9 +23,15 @@ fn main() {
                     let payload: Value = serde_json::from_str(json_payload)
                         .expect("Failed to parse JSON payload");
 
+                    let event_name = match payload["cli"].as_str().expect("Not a string") {
+                        "sls" => "Serverless CLI - Command",
+                        "vendor/bin/bref" => "Bref CLI - Command",
+                        _ => "Unknown CLI - Command",
+                    };
+
                     let data = json!([
                         {
-                            "event": "Bref CLI - Command",
+                            "event": event_name,
                             "properties": {
                                 "token": "5aa82249a4bf5e4a800ab88b6b725f92",
                                 "distinct_id": payload["uid"],
@@ -33,7 +39,6 @@ fn main() {
                                 // Current time in milliseconds
                                 "time": time(),
                                 "bref_version": payload["v"],
-                                "cli": payload["cli"],
                                 "command": payload["c"],
                                 // Timestamp of the first local installation
                                 "sls_installation_date": payload["install"],
