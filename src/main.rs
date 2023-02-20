@@ -40,6 +40,7 @@ fn main() {
                                 "time": time(),
                                 "bref_version": payload["v"],
                                 "command": payload["c"],
+                                "ci": payload["ci"],
                                 // Timestamp of the first local installation
                                 "sls_installation_date": payload["install"],
                             },
