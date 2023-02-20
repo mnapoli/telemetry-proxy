@@ -40,7 +40,7 @@ fn main() {
                         }
                     ]);
 
-                    println!("Received event {} from {}", data.to_string(), src);
+                    println!("Received event from {}", src);
                     println!("{}", json_payload);
                     println!("{}/1500", json_payload.len());
 
