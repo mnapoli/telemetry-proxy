@@ -20,6 +20,8 @@ fn main() {
                     // Remove the null bytes
                     let json_payload = payload_with_null_bytes.trim_matches(char::from(0));
 
+                    // Note: accessing a field that doesn't exist will return null
+                    // See https://docs.rs/serde_json/latest/serde_json/
                     let payload: Value = serde_json::from_str(json_payload)
                         .expect("Failed to parse JSON payload");
 
@@ -44,12 +46,14 @@ fn main() {
                                 // Timestamp of the first local installation
                                 "sls_installation_date": payload["install"],
                                 "constructs": payload["constructs"],
+                                "timezone": payload["tz"],
+                                "extensions": payload["ext"],
                             },
                         }
                     ]);
 
-                    println!("Received event from {}", src);
-                    println!("{}", json_payload);
+                    // println!("Received event from {}", src);
+                    // println!("{}", json_payload);
                     println!("{}/1500", json_payload.len());
 
                     track_event(data.to_string());
